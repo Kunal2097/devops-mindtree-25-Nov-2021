@@ -1,0 +1,8 @@
+--- 
+
+- hosts: '172.31.0.101'
+  name: Tomcat Application & Apache Web Deployment
+  roles:
+  - firewall
+  - webserver
+  - tomcat
