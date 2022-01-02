@@ -1,0 +1,39 @@
+node {
+    // some block because pipeline needs to mention the current node
+stage('Git CheckOut'){
+    git branch: 'master', url: 'https://github.com/Kunal2097/devops-mindtree-25-Nov-2021.git'
+}
+//sh 'pwd'
+//sh 'cd /home/kunal/Desktop/DEV-OPS/JENKINS/devops-mindtree-25-Nov-2021/03-App-Code/petclinic-code'
+//sh 'pwd'
+
+dir('03-App-Code/petclinic-code/') {
+    // some block
+        stage('Maven clean') {
+        // some block
+        sh 'mvn clean'
+    }
+    
+    stage('Maven compile') {
+        // some block
+        sh 'mvn compile'
+    }
+    
+    stage('Maven test') {
+        // some block
+        sh 'mvn test'
+    }
+    
+    stage('Maven package') {
+        // some block
+        sh 'mvn package'
+    }
+    
+    stage('Archive Artifact'){
+        archiveArtifacts artifacts: 'target/petclinic.war', followSymlinks: false
+    }
+}
+
+//node ends
+}
+
