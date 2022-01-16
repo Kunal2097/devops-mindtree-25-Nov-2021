@@ -32,6 +32,10 @@ dir('03-App-Code/petclinic-code/') {
     stage('Archive Artifact'){
         archiveArtifacts artifacts: 'target/petclinic.war', followSymlinks: false
     }
+       stage('Docker Deployment'){
+       sh 'docker-compose up -d --build'
+    }
+
 }
 
 //node ends
