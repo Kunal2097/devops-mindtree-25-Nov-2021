@@ -2,7 +2,7 @@ node {
    // some block because pipeline needs to mention the current node
 
 def server = Artifactory.server "01"
-def buildinfo = Artifactory.newBuildInfo()
+def buildInfo = Artifactory.newBuildInfo()
 
 //Project Path
 def project_path ="03-App-Code/petclinic-code/"
@@ -37,7 +37,7 @@ dir(project_path) {
         // some block
         sh 'mvn package'
     }
-    
+  
     stage ('Build Management'){
 	def uploadSpec ="""{
 		 "files":[
@@ -58,9 +58,9 @@ dir(project_path) {
     stage('Archive Artifact'){
         archiveArtifacts artifacts: 'target/petclinic.war', followSymlinks: false
     }
-       stage('Docker Deployment'){
-       sh 'docker-compose up -d --build'
-    }
+      // stage('Docker Deployment'){
+     //  sh 'docker-compose up -d --build'
+   // }
 
 }
 
